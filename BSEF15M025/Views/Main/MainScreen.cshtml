@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "MainScreen";
+}
+
+<style>
+    input[type=submit] {
+        background-color: beige;
+        border: none;
+        color: black;
+        padding: 16px 32px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+        width: 50%;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto auto auto auto;
+        grid-gap: 10px;
+        background-color: white;
+        padding: 1px;
+        align-self:center;
+    }
+
+        .grid-container > div {
+            background-color: crimson;
+            padding: 0px 0;
+            margin-left:500px;           
+            margin-top:100px;     
+        }
+
+    .item1 {
+        grid-row: 1/4;
+    }
+   
+</style>
+<div class="grid-container">
+    <div class="item1" align="center">
+        @{
+            Session["edit"] = false;
+        }
+        <h1>Main Screen</h1>
+        <input type="submit" value="New User" id="newUser" onclick="@("window.location.href='" + @Url.Action("NewUserPage", "User") + "'");"><br><br>
+        <input type="submit" value="Existing User" id="existingUser" onclick="@("window.location.href='" + @Url.Action("ExistingUser", "User") + "'");"><br><br>
+        <input type="submit" value="Admin" id="admin" onclick="@("window.location.href='" + @Url.Action("Admin", "User") + "'");"><br><br>
+        <input type="submit" value="Exit" id="exit" onclick="@("window.location.href='" + @Url.Action("", "") + "'");">
+    </div>
+</div>

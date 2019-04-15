@@ -1,0 +1,138 @@
+﻿@model BSEF15M025.Models.UserDTO
+@{
+    ViewBag.Title = "NewUser";
+}
+
+
+<style>
+    input[type=submit] {
+        background-color: beige;
+        border: none;
+        color: black;
+        padding: 16px 32px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    .grid-container > div {
+        background-color: crimson;
+        padding-left: 20px;
+        margin-left: 450px;
+        margin-right: 100px;
+        margin-top: 100px;
+        height: 500px;
+        width: 500px;
+    }
+
+    .item1 {
+        grid-row: 1/4;
+    }
+</style>
+<form method="post" action='@Url.Content("~/User/CreateUser")' enctype="multipart/form-data">
+    <div class="grid-container">
+        <div class="item1" align="center">
+
+            <h1>New User</h1>
+            <input type="hidden" name="UserID" value=@Model.UserID>
+            <table>
+                <tr>
+
+                    <td> Name:</td>
+                    <td><input type="text" name="name" value=@Model.name></td>
+                    <td rowspan="2"><input type="file" name="img" value=@Model.img></td>
+                </tr>
+                <tr>
+                    <td>Login:</td>
+                    <td><input type="text" name="login" value=@Model.login></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="pswd" value=@Model.pswd></td>
+                </tr>
+                <tr>
+                    <td> Email:</td>
+                    <td><input type="email" name="email" value=@Model.email></td>
+                </tr>
+                <tr>
+                <tr>
+                    <td>Gender:</td>
+                    @{
+                        if (@Model.gender == 'F')
+                        {
+                            <td>
+                                <select name="gender">
+
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                </select>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <select name="gender">
+
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </td>
+                        }
+                    }
+                </tr>
+                <tr>
+                    <td>Address:</td>
+                    <td><textarea name="address" style="height:50px">@Model.address</textarea></td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td><input type="number" name="age" value=@Model.age></td>
+                </tr>
+                <tr>
+                    <td> NIC:</td>
+                    <td><input type="text" name="nic" value=@Model.nic></td>
+                </tr>
+                <tr>
+                    <td>Date of Birth:</td>
+                    <td><input type="datetime" name="dob" required value="@string.Format("{mm/dd/yyyy}", Model.dob)"></td>
+                </tr>
+                <tr>
+                    <td>Sports:</td>
+                    @{
+                        var h = "";
+                        var cr = "";
+                        var ch = "";
+                        if (Model.chess == 1)
+                        {
+                            ch = "checked";
+                        }
+                        if (Model.cricket == 1)
+                        {
+                            cr = "checked";
+                        }
+                        if (Model.hockey == 1)
+                        {
+                            h = "checked";
+                        }
+
+                    }
+                    <td>
+                        <input type="checkbox" @cr name="cricket"> Cricket
+
+                        <input type="checkbox" @h name="hockey"> Hockey
+
+                    </td>
+                    <td><input type="checkbox" @ch name="chess"> Chess
+
+                </tr>
+                <tr>
+                    <td><input type="submit" value="create" name="create"></td>
+                    <td><a href="@Url.Action("MainScreen", "Main")"> Cancel</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+
+
+
